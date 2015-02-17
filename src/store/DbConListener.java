@@ -1,5 +1,6 @@
 package store;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -20,14 +21,16 @@ public class DbConListener implements ServletContextListener {
 	/**
      * @see ServletContextListener#contextDestroyed(ServletContextEvent)
      */
-    public void contextDestroyed(ServletContextEvent arg0) {
+    public void contextDestroyed(ServletContextEvent sce) {
     }
 
 	/**
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
-    public void contextInitialized(ServletContextEvent arg0) {
-        // TODO Auto-generated method stub
+    public void contextInitialized(ServletContextEvent sce) {
+        DbConnection db = new DbConnection();
+        ServletContext sc = sce.getServletContext();
+        sc.setAttribute("db",db);
     }
 	
 }
