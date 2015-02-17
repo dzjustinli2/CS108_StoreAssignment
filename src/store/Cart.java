@@ -10,10 +10,23 @@ public class Cart {
 		shoppingCart = new HashMap<Product,Integer>();
 	}
 	
+	public void setValue(String id, int quant){
+		ArrayList<Product> items = getProducts();
+		int size = items.size();
+		for(int i = 0; i < size; i++){
+			Product pd = items.get(i);
+			if(pd.getId().equals(id)){
+				setQuantity(pd,quant);
+				return;
+			}
+		}
+	}
+	
 	public void setQuantity(Product pd, int quant){
 		if(!shoppingCart.containsKey(pd)) return;
 		if(quant == 0){
-			shoppingCart.remove(quant);
+			shoppingCart.remove(pd);
+			//System.out.println("Removed");
 		}else{
 			shoppingCart.put(pd,new Integer(quant));
 		}
@@ -32,4 +45,11 @@ public class Cart {
 		return new ArrayList<Product>(shoppingCart.keySet());
 	}
 	
+	public void addProduct(Product pd){
+		if(!shoppingCart.containsKey(pd)){
+			shoppingCart.put(pd,1);
+		}else{
+			shoppingCart.put(pd,shoppingCart.get(pd) + 1);
+		}
+	}
 }

@@ -7,7 +7,7 @@ public class ProductCatalog {
 	
 	public static ArrayList<Product> getProducts(DbConnection db){
 		db.openDB();
-		ResultSet rs = db.search("SELECT * FROM products");
+		ResultSet rs = db.search("SELECT * FROM products;");
 		ArrayList<Product> pdAr = new ArrayList<Product>();
 		if(rs == null) return pdAr;
     	try{
@@ -28,7 +28,7 @@ public class ProductCatalog {
 	
 	public static Product getOneProduct(DbConnection db, String id){
 		db.openDB();
-		ResultSet rs = db.search("SELECT * FROM products WHERE productid = " + id);
+		ResultSet rs = db.search("SELECT * FROM products WHERE productid = '" + id +"';");
 		Product pd = null;
 		if(rs == null) return pd;
     	try{
